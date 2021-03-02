@@ -1,13 +1,13 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
       <div class="jumbotron text-center">
         <h1 class="display-3">Thank You!</h1>
-        <p class="lead"><strong>Please check your email</strong> for order confirmation.</p>
+        <p class="lead"><strong>Please check your email</strong> for order confirmation.{{products.length}}</p>
         <hr>
         <p>
 
-        <p>Order Id : <strong>{{orderId}}</strong></p>
+        <p>Order Number : <strong>{{orderId}}</strong></p>
       </div>
 
       <table class="table table-striped">
@@ -21,13 +21,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let p of products">
+        <tr *ngFor="let p of viewOrders">
           <td>
-            <img [src]="p.image" alt="{{p.name}}" class="img-thumbnail" width="100px">
+          <img [src]="p.product.image" alt="{{p.product.name}}" class="img-thumbnail" width="100px">
+            image
           </td>
-          <td>{{p.name}}</td>
-          <td>{{p.price | currency:'KES '}}</td>
-          <td>{{p.quantityOrdered}}</td>
+          <td>{{p.product.name}}</td>
+          <td>{{p.product.price | currency:'KES '}}</td>
+          <td>{{p.numInCart}}</td>
 
         </tr>
 

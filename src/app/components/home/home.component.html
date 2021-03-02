@@ -1,49 +1,82 @@
 <!-- SECTION -->
 <div class="section">
   <!-- container -->
-  <div class="container">
+  <div class="container-fluid">
     <!-- row -->
     <div class="row">
       <!-- shop -->
-      <div class="col-md-4 col-xs-6">
-        <div class="shop">
-          <div class="shop-img">
-            <img src="/assets/img/shop01.png" alt="">
-          </div>
-          <div class="shop-body">
-            <h3>Electronics<br>Collection</h3>
-            <a (click)="selectCategory('Electronics')" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-      </div>
-      <!-- /shop -->
+      <div class="col-md-2 col-xs-6" style="background-color: azure;margin-top: -30px;border-style: ridge;">
+        <ul>
+          <br>
+          <li (click)="selectCategory('Speed Governor and their Accessories')"><h6>Speed Governors</h6></li>
+          <li (click)="selectCategory('Cables & Wires')"><h6>Cables & Wires</h6></li>
+          <li (click)="selectCategory('Auto spare parts')"><h6>Auto spare parts</h6></li>
+          <li routerLink="/capacitors-search"><h6>Capacitors</h6></li>
+          <li routerLink="/resistors-search"><h6>Resistors</h6></li>
+          <li (click)="selectCategory('Connectors')"><h6>Connectors</h6></li>
+          <li (click)="selectCategory('Diodes')"><h6>Diodes</h6></li>
+          <li (click)="selectCategory('Crystals')"><h6>Crystals</h6></li>
+          <li (click)="selectCategory('Transistors')"><h6>Transistors</h6></li>
+          <li (click)="selectCategory('Interface ICs')"><h6>Interface ICs</h6></li>
+          <li (click)="selectCategory('Processors & Controllers')"><h6>Processors & Controllers</h6></li>
+        
+        </ul>
 
-      <!-- shop -->
-      <div class="col-md-4 col-xs-6">
-        <div class="shop">
-          <div class="shop-img">
-            <img src="/assets/img/prod-5.jpg" alt="">
-          </div>
-          <div class="shop-body">
-            <h3>Shoes<br>Collection</h3>
-            <a (click)="selectCategory('Shoes')" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
       </div>
-      <!-- /shop -->
+      <div class="col-md-10 col-xs-6">
+        <div class="row">
+          <div class="col-md-4 col-xs-6">
+            <div class="shop">
+              <div class="shop-img">
+                <img src="assets/img/governor.jpg" alt="">
+              </div>
+              <div class="shop-body">
+                <h3>Governors & Accessories<br>Collection</h3>
+                <a (click)="selectCategory('Speed Governor and their Accessories')" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <!-- /shop -->
+    
+          <!-- shop -->
+          <div class="col-md-4 col-xs-6">
+            <div class="shop">
+              <div class="shop-img">
+                <img src="assets/img/motospare.jpg" alt="">
+              </div>
+              <div class="shop-body">
+                <h3>Auto Spare Parts<br>Collection</h3>
+                <a (click)="selectCategory('Auto spare parts')" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <!-- /shop -->
+    
+          <!-- shop -->
+          <div class="col-md-4 col-xs-6">
+            <div class="shop">
+              <div class="shop-img">
+                <img src="assets/img/cables.jpg" alt="">
+              </div>
+              <div class="shop-body">
+                <h3>Cables and Wires<br>Collection</h3>
+                <a (click)="selectCategory('Cables & Wires')" class="cta-btn">Shop now<i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+          </div>
 
-      <!-- shop -->
-      <div class="col-md-4 col-xs-6">
-        <div class="shop">
-          <div class="shop-img">
-            <img src="/assets/img/shop02.png" alt="">
-          </div>
-          <div class="shop-body">
-            <h3>Cameras<br>Collection</h3>
-            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
         </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div style="background: url('assets/img/banner.jpg');" class="marquee">
+              <p> <b style="font-size: large;color: whitesmoke">We have varieties of electronic componenets here at ekasline.com at affordable price. We also sell digital Speed governors and auto spare parts</b>  </p>
+            </div>
+          </div>
+         
+        </div>
+
       </div>
+      
       <!-- /shop -->
     </div>
     <!-- /row -->
@@ -55,15 +88,14 @@
 <!-- SECTION -->
 <div class="section">
   <!-- container -->
-  <div class="container">
+  <div class="container-fluid">
     <!-- row -->
     <div class="row">
 
       <!-- section title -->
       <div class="col-md-12">
         <div class="section-title">
-          <h3 class="title">New Products</h3>
-
+          <h3 class="title">Popular Products</h3>
         </div>
       </div>
       <!-- /section title -->
@@ -72,7 +104,7 @@
       <div class="col-md-12">
         <div class="row">
           <!-- ........................working here -->
-          <div class="col-md-4 col-sm-6" *ngFor="let p of products">
+          <div class="col-md-3 col-sm-6" *ngFor="let p of products">
             <div class="card my-2">
               <img [src]="p.image" alt="{{p.name}}" width="200px;" class="card-img-top" style="cursor: pointer;" (click)="selectProduct(p.id)">
               <div class="card-header">

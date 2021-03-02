@@ -19,6 +19,14 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import {SocialAuthService, SocialLoginModule} from 'angularx-social-login';
+import { ProductsSearchComponent } from './components/products-search/products-search.component';
+import { RegisterComponent } from './components/register/register.component';
+import { SubCategorySearchComponent } from './components/sub-category-search/sub-category-search.component';
+import { CapacitorsComponent } from './components/capacitors/capacitors.component';
+import { ResistorsComponent } from './components/resistors/resistors.component';
+import { SubCapacitorComponent } from './components/sub-capacitor/sub-capacitor.component';
+import { SubResistorComponent } from './components/sub-resistor/sub-resistor.component';
+import { GeneralSearchComponent } from './components/general-search/general-search.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +40,15 @@ import {SocialAuthService, SocialLoginModule} from 'angularx-social-login';
     ProductComponent,
     CategoriesComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProductsSearchComponent,
+    RegisterComponent,
+    SubCategorySearchComponent,
+    CapacitorsComponent,
+    ResistorsComponent,
+    SubCapacitorComponent,
+    SubResistorComponent,
+    GeneralSearchComponent
   ],
     imports: [
         BrowserModule,

@@ -12,6 +12,8 @@ export class ThankyouComponent implements OnInit {
   orderId: number;
   products: ProductResponseModel[] = [];
   cartTotal: number;
+  productsOrders;
+  viewOrders;
 
   constructor(private router: Router,
               private orderService: OrderService) {
@@ -27,9 +29,14 @@ export class ThankyouComponent implements OnInit {
     this.products = state.products;
     this.orderId = state.orderId;
     this.cartTotal = state.total;
+
+    this.productsOrders = JSON.parse(localStorage.getItem("OrdersCart"));
+
+    this.viewOrders = this.productsOrders.data;
   }
 
   ngOnInit(): void {
+    console.log(this.viewOrders);
   }
 
 }

@@ -13,32 +13,29 @@ export class ProfileComponent implements OnInit {
 myUser: any;
 details;
 email: string;
+userOrders;
   constructor(private userService: UserService,
     private router: Router) { }
 
   ngOnInit(): void {
     this.userService.userData$
-    .pipe(
-      map(user => {
-        if(user instanceof SocialUser) {
-          return {
-            email: 'test@testrrr.com',
-            ...user
-          };
-        } else {
-          return user;
-        }
-      })
-    )
-    .subscribe((data: ResponseModel | SocialUser): void => {
+    .subscribe((data: ResponseModel): void => {
       this.myUser = data;
       this.userService.getUserDetails(data.email).subscribe(datas => {
         this.details = datas;
-  
       });
+      
     });
+    
+    this.userService.getUserOreders(this.myUser.id).subscribe(orders =>{
+      this.userOrders = orders;
+      this.userOrders = this.userOrders.orders;
+    })
 
-   
+  }
+
+  logout(): void {
+    this.userService.logout();
   }
 
 }

@@ -80,7 +80,7 @@
             <a class="review-link" href="#">10 Review(s) | Add your review</a>
           </div>
           <div>
-            <h3 class="product-price">{{product.price | currency:'KES '}} <del class="product-old-price">$990.00</del></h3>
+            <h3 class="product-price">{{product.price | currency:'KES '}} <del class="product-old-price">{{product.price+((10/100)*product.price) | currency:'KES '}}</del></h3>
             <span class="product-available">In Stock</span>
           </div>
           <p>{{product.description}}</p>

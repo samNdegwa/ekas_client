@@ -11,54 +11,49 @@
 <!-- SECTION -->
 <div class="section" *ngIf="cartTotal > 0">
   <!-- container -->
-  <div class="container">
+  
+  <div class="container-fluid">
     <!-- row -->
+  <form role="form" #addressForm="ngForm" (ngSubmit)=onSubmit(addressForm.value)>
     <div class="row">
 
       <div class="col-md-7">
         <!-- Billing Details -->
+        <div class="img-thumbnail">
+        <h6>Name: {{details.fname + ' ' + details.lname}}</h6>
+        <h6>Email: {{myUser.email}}</h6>
+        </div>
         <div class="billing-details">
           <div class="section-title">
             <h3 class="title">Billing address</h3>
           </div>
           <div class="form-group">
-            <input class="input form-control" type="text" name="first-name" placeholder="First Name">
+            <input class="input form-control" type="text" name="phone" ngModel placeholder="Enter Phone Number" required>
           </div>
           <div class="form-group">
-            <input class="input form-control" type="text" name="last-name" placeholder="Last Name">
+            <label>County</label>
+            <select class="form-control" name="county" ngModel required>
+              <option value="">---Select---</option>
+              <option *ngFor="let c of counties">
+                {{c.name}}
+              </option>
+            </select>
           </div>
           <div class="form-group">
-            <input class="input form-control" type="email" name="email" placeholder="Email">
+            <input class="input form-control" type="text" name="subCounty" ngModel placeholder="Enter Sub County" required>
           </div>
           <div class="form-group">
-            <input class="input form-control" type="text" name="address" placeholder="Address">
+            <input class="input form-control" type="text" name="city" ngModel placeholder="Enter Neaby City/Town" required>
           </div>
           <div class="form-group">
-            <input class="input form-control" type="text" name="city" placeholder="City">
+            <input class="input form-control" type="text" name="postal" ngModel placeholder="Enter Postal Address" required>
           </div>
           <div class="form-group">
-            <input class="input form-control" type="text" name="country" placeholder="Country">
-          </div>
-          <div class="form-group">
-            <input class="input form-control" type="text" name="zip-code" placeholder="ZIP Code">
-          </div>
-          <div class="form-group">
-            <input class="input form-control" type="tel" name="tel" placeholder="Telephone">
-          </div>
-          <div class="form-group">
-                <p>Please provide your password below</p>
-                <input class="input form-control" type="password" name="password" placeholder="Enter Your Password">
-          </div>
-           <div class="form-group">
-                <input class="input form-control" type="password" name="password" placeholder="Confirm Password">
+            Belief Description of Your Location
+            <textarea class="form-control" name="descr" ngModel required></textarea>
           </div>
         </div>
-        <!-- /Billing Details -->
-        <!-- Order notes -->
-        <div class="order-notes">
-          <button class="btn btn-primary">Create Account</button>  <b style="float:right;"> I have account <a style="color:maroon;">Login</a></b>
-        </div>
-        <!-- /Order notes -->
+        
       </div>
 
       <!-- Order Details -->
@@ -125,12 +120,14 @@
             I've read and accept the <a href="#">terms & conditions</a>
           </label>
         </div>
-        <button class="btn btn-outline-danger btn-sm my-2 btn-block order-submit" (click)="onCheckout()">Place order</button>
+        <button type="submit" class="btn btn-outline-danger btn-sm my-2 btn-block order-submit" id="btn-place-order"><i class="fa fa-shopping-basket" aria-hidden="true"></i> Place order</button>
       </div>
       <!-- /Order Details -->
     </div>
     <!-- /row -->
+  </form>
   </div>
+  
   <!-- /container -->
 </div>
 <!-- /SECTION -->

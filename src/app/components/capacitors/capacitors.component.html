@@ -1,0 +1,382 @@
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container-fluid">
+      <!-- row -->
+      <div class="row">
+  
+        <!-- section title -->
+        <div class="col-md-12">
+            <hr>
+            <div class="section-title" *ngIf="products.length < 1">
+              <h3 style="text-align: center;">No "Capacitor" Related Products Found {{products.length}}</h3>
+              <h4 style="text-align: center;color: red;">{{products.length}} Result Found</h4>
+            </div>
+          <div class="section-title" *ngIf="products.length > 0">
+            <h3 style="text-align: center;">Products Related to "Capacitor"</h3>
+            <h4 style="text-align: center;color: green;">{{products.length}} Results Found</h4>
+          </div>
+          
+          <hr>
+        </div>
+      </div>
+
+        <!-- /section title -->
+  
+        <!-- Products tab & slick -->
+        
+        <div class="col-md-12">
+          <h4>Types of Capacitor</h4>
+            <div class="row">
+              <div class="col-md-3 col-sm-6" *ngFor="let sc of subCategories.sub_categories">
+                <div class="my-2">
+                  <a routerLink="/capacitors/{{sc.name}}"><span style="color:#24ADF3">{{sc.name}}</span> (212)</a>
+                </div>
+              </div>
+            </div>
+            </div>
+            <hr>
+      <div class="row" id="filter-container">
+          <div class="col-sm-2">
+            <br>
+            <div class="form-group">
+              <b>Manufacturer:</b><br>
+              <input type="text" placeholder="Search.." id="myInput" onkeyup="filter()">
+            <select size="9" class="drop-menu" id="myDropdown" >
+              <option>(JEC)</option>
+<option>AISHI(Aihua Group)</option>
+<option>APAQ Tech</option>
+<option>ATC</option>
+<option>AVX</option>
+<option>Abracon LLC</option>
+<option>BERYL Electronic Tech</option>
+<option>Bennic</option>
+<option>CCTC</option>
+<option>CDE</option>
+<option>CEC(Shenzhen Zhenhua XinYun Elec)</option>
+<option>CHAMPION</option>
+<option>CJE</option>
+<option>CRC</option>
+<option>CX(Dongguan Chengxing Elec)</option>
+<option>CY(Changzhou Chaoyin Elec)</option>
+<option>Capxon International Elec</option>
+<option>Card Sockets</option>
+<option>Carli</option>
+<option>Changzhou Huawei Elec</option>
+<option>Chinocera</option>
+<option>DAIN Elec</option>
+<option>DMBJ</option>
+<option>DMEGC</option>
+<option>Darfon Elec</option>
+<option>Dersonic</option>
+<option>ELNA</option>
+<option>EYANG(Shenzhen Eyang Tech Development)</option>
+<option>FH(Guangdong Fenghua Advanced Tech)</option>
+<option>FH-LH.Nova</option>
+<option>FUJITSU</option>
+<option>GDHY</option>
+<option>Guangdong TOPAZ Elec Tech</option>
+<option>Guoguang Elec Sci-tech</option>
+<option>HEADCON</option>
+<option>HEAO</option>
+<option>HUI JU</option>
+<option>Hongzhi Elec</option>
+<option>Honor Elec</option>
+<option>Hunan Xiangyee in S&amp</option>
+<option>IHHEC(HOLY STONE ENTERPRISE CO., LTD)</option>
+<option>JEC</option>
+<option>JIERONG</option>
+<option>JML</option>
+<option>Jimson</option>
+<option>Johanson Dielectrics</option>
+<option>KEMET</option>
+<option>KFSON</option>
+<option>KNSCHA</option>
+<option>KS</option>
+<option>KYET</option>
+<option>Knowles</option>
+<option>Kyocera</option>
+<option>LCSC</option>
+<option>LY</option>
+<option>Lelon</option>
+<option>Made in China</option>
+<option>Man Yue Tech</option>
+<option>Matsuo</option>
+<option>Murata Electronics</option>
+<option>NCC(Nippon Chemi-Con)</option>
+<option>NDF</option>
+<option>NISSEI</option>
+<option>Nantong Jianghai Capacitor</option>
+<option>Nichicon</option>
+<option>Nistronics</option>
+<option>PANASONIC</option>
+<option>PSA(Prosperity Dielectrics)</option>
+<option>ROHM Semicon</option>
+<option>ROQANG</option>
+<option>Rubycon</option>
+<option>SAMXON</option>
+<option>SANYEAR</option>
+<option>SEI(Stackpole Elec)</option>
+             
+            </select>
+            </div>
+            <br>
+            <button class="btn-primary" id="apply-btn">Apply</button>
+        <br><br>
+         </div>
+
+         <div class="col-sm-2">
+           <br>
+            <div class="form-group">
+              <b>Package:</b><br>
+              <input type="text" placeholder="Search.." id="myInput" onkeyup="filter()">
+            <select size="9" class="drop-menu" id="myDropdown" >
+              <option>0.055inch*0.055inch</option>
+              <option>0.11inch*0.11inch</option>
+              <option>008004</option>
+              <option>01005</option>
+              <option>0201</option>
+              <option>0202</option>
+              <option>0204</option>
+              <option>0306</option>
+              <option>0402</option>
+              <option>0402 (1005 Metric)</option>
+              <option>0402_x4</option>
+              <option>0502</option>
+              <option>0504</option>
+              <option>0505</option>
+              <option>0508</option>
+              <option>0511</option>
+              <option>0602</option>
+              <option>0603</option>
+              <option>0603_x4</option>
+              <option>0603x4</option>
+              <option>0606</option>
+              <option>0611</option>
+              <option>0612</option>
+              <option>0805</option>
+              <option>0810</option>
+              <option>0815</option>
+              <option>0820</option>
+              <option>0905</option>
+            </select>
+            </div>
+            <br>
+            <input type="checkbox" name="deals" value="deals" class="btn btn-primary">
+           <label for="Deals"> Deals</label>
+           <br><br>
+            </div>
+            <div class="col-sm-2">
+              <br>
+            <div class="form-group">
+              <b>Capacitance:</b>
+              <input type="text" placeholder="Search.." id="myInput" onkeyup="filter()"><br>
+            <select size="9" class="drop-menu" id="myDropdown" >
+              <option>0.10pF</option>
+<option>0.1pF</option>
+<option>0.2pF</option>
+<option>0.25pF</option>
+<option>0.3pF</option>
+<option>0.4pF</option>
+<option>0.47pF</option>
+<option>0.50pF</option>
+<option>0.5pF</option>
+<option>0.56pF</option>
+<option>0.6pF</option>
+<option>0.60pF</option>
+<option>0.68pF</option>
+<option>0.7pF</option>
+<option>0.75pF</option>
+<option>0.8pF</option>
+<option>0.80pF</option>
+<option>0.82pF</option>
+<option>0.90pF</option>
+<option>0.9pF</option>
+<option>1pF</option>
+<option>1.1pF</option>
+<option>1.2pF</option>
+<option>1.2pF</option>
+<option>1.3pF</option>
+<option>1.4pF</option>
+            </select>
+            </div>
+           </div>
+           <div class="col-sm-2">
+             <br>
+            <div class="form-group">
+              <b>Tolerance:</b><br>
+              <input type="text" placeholder="Search.." id="myInput" onkeyup="filter()"><br>
+            <select size="9" class="drop-menu" id="myDropdown" >
+              <option>-40%~0%</option>
+<option>-35%~+10%</option>
+<option>-30%,+10%</option>
+<option>-30%~0%</option>
+<option>-20%,+10%</option>
+<option>-20%,+50%</option>
+<option>-20%,+80%</option>
+<option>-20%~+80%</option>
+<option>-15%~+20%</option>
+<option>-10%,+20%</option>
+<option>-10%,+30%</option>
+<option>-10%,+35%</option>
+<option>-10%~+20%</option>
+<option>-10%~+50%</option>
+<option>±0.02pF</option>
+<option>±0.05pF</option>
+<option>±0.1pF</option>
+<option>±0.25pF</option>
+<option>±0.50pF</option>
+<option>±0.5pF</option>
+<option>±1pF</option>
+<option>±025pF</option>
+<option>±1%</option>
+<option>±2%</option>
+<option>±2.5%</option>
+             
+            </select>
+            </div>
+            </div>
+
+            <div class="col-sm-2">
+              <br>
+            <div class="form-group">
+              <b>Voltage Reated:</b><br>
+              <input type="text" placeholder="Search.." id="myInput" onkeyup="filter()"><br>
+            <select size="9" class="drop-menu" id="myDropdown" >
+             
+<option>250/400VAC</option>
+<option>X1:440VAC</option>
+<option>X1:300VAC</option>
+<option>1.8V</option>
+<option>2V</option>
+<option>2.5V</option>
+<option>4V</option>
+<option>6V</option>
+<option>6.3V</option>
+<option>6.5V</option>
+<option>6.8V</option>
+<option>7V</option>
+<option>7.5V</option>
+<option>10V</option>
+<option>11.5V</option>
+<option>12V</option>
+<option>12.5V</option>
+<option>16V</option>
+<option>20V</option>
+<option>25V</option>
+<option>32V</option>
+<option>35V</option>
+<option>40V</option>
+<option>50V</option>
+<option>63V</option>
+<option>70V</option>
+<option>80V</option>
+<option>100V</option>
+<option>150V</option>
+             
+            </select>
+            </div>
+           </div>
+
+           <div class="col-sm-2">
+             <br>
+            <div class="form-group">
+              <b>Temperature Coefficient:</b><br>
+              <input type="text" placeholder="Search.." id="myInput" onkeyup="filter()"><br>
+            <select size="9" class="drop-menu" id="myDropdown" >
+              <option>250/400VAC</option>
+<option>X1:440VAC</option>
+<option>X1:300VAC</option>
+<option>1.8V</option>
+<option>2V</option>
+<option>2.5V</option>
+<option>4V</option>
+<option>6V</option>
+<option>6.3V</option>
+<option>6.5V</option>
+<option>6.8V</option>
+<option>7V</option>
+<option>7.5V</option>
+<option>10V</option>
+<option>11.5V</option>
+<option>12V</option>
+<option>12.5V</option>
+<option>16V</option>
+<option>20V</option>
+<option>25V</option>
+<option>32V</option>
+<option>35V</option>
+<option>40V</option>
+<option>50V</option>
+<option>63V</option>
+<option>70V</option>
+<option>80V</option>
+<option>100V</option>
+<option>150V</option>
+             
+            </select>
+            </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-2">
+            <h3>Result : {{products.length}}</h3>
+          </div>
+          <div class="col-md-3">
+            <h5><input type="checkbox" name="smartFilter" value="smart" class="btn btn-primary" checked>
+            <label for="Smart"> Smart Filtering</label></h5>
+          </div>
+          <div class="col-md-4">
+
+          </div>
+          <div class="col-md-3">
+            <input type="text" class="form-control" onkeyup="filterTable()" name=" filter_field" id="search-input" placeholder="Filter within Results">
+          </div>
+        </div>
+        
+       <div class="row">
+           <div class="col-md-12" *ngIf="products.length > 0">
+            <br><br><br>
+            <table class="table table-bordered table-responsive">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Image</th>
+                        <th>Price</th>
+                        <th>Availability</th>
+                        <th>Mfr.Part</th>
+                        <th>Manufacturer</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                        <th>Part</th>
+                        <th>Package</th>
+                        <th>Packaging</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor = "let p of products">
+                        <td>
+                            <img [src]="p.image" alt="{{p.name}}" class="card-img-top" style="cursor: pointer;width:100px;">
+                        </td>
+                        <td>{{p.price}}</td>
+                        <td>{{p.quantity}}</td>
+                        <td>N/A</td>
+                        <td>Ekas Tech</td>
+                        <td>{{p.description}}</td>
+                        <th>
+                          <a routerLink="/product/{{p.id}}"> <button type="button" class="btn btn-outline-primary btn-sm">Add</button></a>
+                        </th>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>Bag-packed</td>
+                    </tr>
+                </tbody>
+
+            </table>
+           </div>
+
+       </div>  
+</div>
+    <!-- /container -->
+    
+  

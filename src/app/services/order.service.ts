@@ -9,13 +9,13 @@ import {environment} from '../../environments/environment';
 // @ts-ignore
 export class OrderService {
   private products: ProductResponseModel[] =[];
-  private  SERVER_URL = environment.SERVER_URL;
+  private  SERVER_URL2 = environment.SERVER_URL2;
 
   constructor(private http: HttpClient ) { }
 
   // tslint:disable-next-line:typedef
   getSingleOrder(orderId: number) {
-    return this.http.get<ProductResponseModel[]>(this.SERVER_URL + '/orders/' + orderId).toPromise();
+    return this.http.get<ProductResponseModel[]>(this.SERVER_URL2 + '/read-order-details.php?id=' + orderId).toPromise();
   }
 
 }

@@ -1,26 +1,56 @@
-<div class="container img-thumbnail" style="margin-top: 10px;margin-bottom: 10px;">
+
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-offset-2 col-md-4 col-lg-offset-3 col-lg-4">
-            <h4>My Account</h4>
+        <div class="col-md-12">
+           <hr>
         </div>
 
     </div>
-	<div class="row">
-		<div class="col-md-offset-2 col-md-4 col-lg-offset-3 col-lg-4">
-            <img src="/assets/img/noimg.png" alt="" style="width: 150px;" class="img-rounded">
+    <div class="row" style="margin-top: 15px;">
+        <div class="col-md-3 ">
+            <div class="img-thumbnail" style="text-align: center;">
+            <h4>My Account</h4>
+          <img src="/assets/img/noimg.png" alt="" style="width: 150px;text-align: center;" class="img-rounded"><br>
+          <button class="btn btn-outline-info btn-sm my-2" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</button><br>
+          <b>Name: </b>{{details.fname + ' '+ details.lname}}<br>
+           <b> Email: </b> {{myUser.email}}<br>
+           <b>Phone:</b> {{details.phoneNumber}}<br>
+           <b>Home Country:</b> {{details.country}}<br>
+           <b>Home City</b>{{details.city}}
+           </div>
         </div>
-        <div class="col-md-offset-2 col-md-4 col-lg-offset-3 col-lg-4">
-             <b>Name: </b>{{details.fname + ' '+ details.lname}}<br><br>
-           <b> Email: </b> {{myUser.email}}
-            <hr>
-                ***************************************************
-            <hr>
-            <h6> Bonus Points: <span class="badge">126</span></h6>
-        
+        <div class="col-md-9">
+            <div class="img-thumbnail">
+           <b> My Orders</b>
+           <b style="float: right;">
+            <a routerLink="/"><button class="btn btn-outline-info btn-sm"><i class="fa fa-cart-plus" aria-hidden="true"></i> Go To Shop</button></a>
+            <a routerLink="/checkout"><button class="btn btn-outline-danger btn-sm"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Check Out</button></a><br>
+           </b>
+           <br><br>
+            <table class="table table-bordered ">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Order Number</th>
+                    <th>Amount Due</th>
+                    <th>Amount Paid</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+               </thead>
+               <tbody>
+                   <tr *ngFor="let o of userOrders">
+                       <td>{{o.date_placed}}</td>
+                       <td>{{o.id}}</td>
+                       <td>{{o.amount_due}}</td>
+                       <td>{{o.amount_paid}}</td>
+                       <td>{{o.status}}</td>
+                       <td><button class="btn btn-outline-info btn-sm"> <i class="fa fa-cog"></i> </button></td>
+                   </tr>
+               </tbody>
+
+            </table>
+            </div>
         </div>
-        <div class="col-md-offset-2 col-md-4 col-lg-offset-3 col-lg-4">
-            <button class="btn btn-danger">Log Out</button>
-        
-        </div>
-	</div>
+    </div>
 </div>

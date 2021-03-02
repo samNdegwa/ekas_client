@@ -9,6 +9,7 @@ import {ProductModelServer} from '../../models/product.model';
 import {environment} from '../../environments/environment';
 import {ToastrService} from 'ngx-toastr';
 import {NgxSpinnerService} from 'ngx-spinner';
+import { EmailService } from './email.service';
 
 
 
@@ -18,6 +19,9 @@ import {NgxSpinnerService} from 'ngx-spinner';
 // @ts-ignore
 export class CartService {
   private serverURL = environment.SERVER_URL;
+  private serverURL2 = environment.SERVER_URL2;
+  userEmail = localStorage.getItem('email');
+  userName = localStorage.getItem('user');
 // data variables to store the cart information on the clients local storage
   private cartDataClient: CartModelPublic = {
     total: 0,
@@ -45,7 +49,8 @@ export class CartService {
               private orderService: OrderService,
               private router: Router,
               private toast: ToastrService,
-              private Spinner: NgxSpinnerService) {
+              private Spinner: NgxSpinnerService,
+              private emailService: EmailService) {
     this.cartTotal$.next(this.cartDataServer.total);
     this.cartData$.next(this.cartDataServer);
 
@@ -234,52 +239,75 @@ export class CartService {
     this.cartTotal$.next(this.cartDataServer.total);
  }
 
-  // tslint:disable-next-line:typedef
- CheckoutFromCart(userId: number,date_placed: string,totalDue: number) {
-    this.http.post(`${this.serverURL}/orders/payment`, null).subscribe((res: {success: boolean}) => {
-      if (res.success) {
-        this.resetServerData();
-        this.http.post(`${this.serverURL}/orders/new`, {
-          userId: userId,
-          date_placed: date_placed,
-          amount_due: totalDue,
-          products: this.cartDataClient.prodData
-        }).subscribe((data: OrderResponse) => {
+  
+CheckoutFromCart(
+  //order details
+  userId: number,date_placed: string,totalDue: number,
+  //Address details
+  phone: string, county: string, subCounty: string, city: string, postAddress: string, desc: string
+  ) {
+    //Storing order to server
+this.http.post(`${this.serverURL2}/ceate-order.php`,{
+  user_id: userId, date_placed: date_placed,amount_due: totalDue})
+  .subscribe((res: OrderResponse) =>{
+  if(res.message === 'Success'){
+    //Storing Order Details to server
+    var order_id = res.order_id;
+    var catLen = this.cartDataClient.prodData.length
+    var i = 0;
+    for(i=0;i<catLen;i++){
+      var prodId = this.cartDataClient.prodData[i].id;
+      var quantity = this.cartDataClient.prodData[i].incart;
+      this.http.post(`${this.serverURL2}/create-order-details.php`,{
+      order_id: order_id, product_id: prodId,quantity: quantity})
+      .subscribe((data: OrderResponse) =>{
+    
+    })
+    }
 
-          this.orderService.getSingleOrder(data.order_id).then(prods => {
-            if (data.success) {
-              const navigationExtra: NavigationExtras = {
-                state: {
-                  message: data.message,
-                  products: prods,
-                  orderId: data.order_id,
-                  total: this.cartDataClient.total
-                }
-              };
-        // Unable to complete spinner hide (vid 11 at 8 min)
-              this.Spinner.hide();
-              this.router.navigate(['/thankyou'], navigationExtra).then(p => {
-                this.cartDataClient = {total: 0, prodData: [{incart: 0, id: 0}]};
-                this.cartTotal$.next(0);
-                localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
-              });
+    this.emailService.sendOrderToUserEmail(this.userName,this.userEmail,catLen,totalDue,order_id);
+    
+    // Storing Addresses to server
+    this.http.post(`${this.serverURL2}/create-addresses.php`, {
+      phone_number: phone,
+      county_to_send: county,
+      sub_county: subCounty,
+      city: city,
+      postal_address: postAddress,
+      description: desc,
+      order_id: order_id
+    }).subscribe((data: AddressResponse) => {
+      //..................................... Order placed successifully 
+      this.orderService.getSingleOrder(order_id).then(prods => {
+          const navigationExtra: NavigationExtras = {
+            state: {
+              message: "success",
+              products: prods,
+              orderId: order_id,
+              total: this.cartDataClient.total
             }
-
+          };
+    // Unable to complete spinner hide (vid 11 at 8 min)
+          this.Spinner.hide();
+          localStorage.setItem('OrdersCart', JSON.stringify(this.cartDataServer));
+          this.router.navigate(['/thankyou'], navigationExtra).then(p => {
+            this.cartDataClient = {total: 0, prodData: [{incart: 0, id: 0}]};
+            this.cartTotal$.next(0);
+            localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
           });
-        });
 
-      } else {
-        this.Spinner.hide();
-        this.router.navigateByUrl('/checkout').then();
-        this.toast.error(`Sorry, failed to book the order`, 'Order Status', {
-          timeOut: 1500,
-          progressBar: true,
-          progressAnimation: 'increasing',
-          positionClass: 'toast-top-right'
-        });
-      }
+      });
+
     });
- }
+  } else {
+    alert("failed to place order");
+  }
+  
+})
+
+
+
+}
 
   // tslint:disable-next-line:typedef
  private  resetServerData() {
@@ -313,3 +341,14 @@ interface OrderResponse {
   }];
 
 }
+
+interface AddressResponse {
+  phone_number: string;
+  county_to_send: string;
+  sub_county: string;
+  city: string;
+  postal_address: string;
+  description: string;
+  user_id: number
+}
+

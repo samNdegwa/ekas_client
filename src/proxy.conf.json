@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "http://ekasline.com/backend",
+        "secure": true,
+        "logLevel": "debug"
+    }
+}
